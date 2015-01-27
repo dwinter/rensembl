@@ -1,0 +1,8 @@
+^\.gitignore$
+^staticdocs$
+^\.git/$
+^rensembl_*\.tar\.gz$
+^README\.md\.rmd$
+^\.travis\.yml$
+^appveyor\.yml$
+

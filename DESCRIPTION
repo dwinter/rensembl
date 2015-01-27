@@ -1,0 +1,14 @@
+Package: rensembl
+Title: Talk to the ensembl REST API  in R
+Version: 0.0.1
+Authors@R: person("David", "Winter", , "david.winter@gmail.com", role = c("aut", "cre"))
+Description: Wraps the ensebmle REST API
+Depends: 
+    R (>= 3.1.2)
+Imports:
+    httr,
+    jsonlite
+VignetteBuilder: knitr                                                                                                                                 
+Roxygen: list(wrap = FALSE)                                                                                                                            
+License: MIT + file LICENSE    
+lazydata: true
