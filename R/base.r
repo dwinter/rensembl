@@ -11,6 +11,7 @@ ensembl_check <- function(req){
     if(! req$status_code < 400){
         if(req$status_code == 429){
             timeout <- req$headers['retry-after']
+            #Enforce this? The allowled rate is v. v. high
             msg <- paste("You have been rate-limited, take a break:", 
                          "no more requests for", timeout, "seconds")
             stop(msg)
@@ -26,8 +27,10 @@ lookup_id <- function(id){
 }
 
 gene_tree <- function(spp, sym){
-    end <- paste("genetree/member/symbol", spp, sym, sep="/")
-    res <- ensembl_GET(end, query=list("content-type"="text/x-phyloxml+xml"))
+    end <- paste("genetree/member/symbol", spp, sym, sep="/")  
+    res <- ensembl_GET(end, 
+                       httr::add_headers("accept"="text/x-nh"),
+                       query=list(nh_format="species"))
     ensembl_check(res)
     res
 }
