@@ -44,33 +44,21 @@ ensembl_check <- function(req){
     }
 }
 
+#Create a query list from long list of possible arguments. 
+ensembl_body <- function(arg_list, exclude){
+    arg_list[[1]] <- NULL
+    arg_list[exclude] <- NULL
+    arg_list
+}
+
 lookup_id <- function(id){
     res <- ensembl_GET(paste0("lookup/id/", id))
     ensembl_check(res)
     res
 }
 
-gene_tree_header <- function(tree_format){
-    h <- switch(tree_format, "nh"      =  "text/x-nh", 
-                             "newick"   =  "text/x-nh", 
-                             "pyloxml" =  "text/x-phyloxml+xml",
-                             "json"    =   "application/json", 
-                 stop(paste("Unkown format for gene tree:", tree_format)))
-    httr::accept(h)    
-}
 
 
-gene_tree <- function(spp, sym){
-    end <- paste("genetree/member/symbol", spp, sym, sep="/")    
-    sp_t <- ensembl_GET(end, 
-                       httr::accept("text/x-nh"),
-                       query=list(nh_format="species"))
-    b_t <- ensembl_GET(end, 
-                       httr::accept("text/x-nh"))
-    tr <- read.tree(text=httr::content(b_t))
-    tr$tip.label <- ape::read.tree(text=httr::content(sp_t))$tip.label
-    tr
-}
 
 
 
@@ -81,4 +69,4 @@ spp_sets  <- function(meth){
     ensembl_GET(end)
 }
 
-b
+
