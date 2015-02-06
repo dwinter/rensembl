@@ -48,11 +48,16 @@ ensembl_check <- function(req){
 ensembl_body <- function(arg_list, exclude){
     arg_list[[1]] <- NULL
     arg_list[exclude] <- NULL
-    arg_list
+    lapply(arg_list, eval)
 }
 
-lookup_id <- function(id){
-    res <- ensembl_GET(paste0("lookup/id/", id))
+lookup_id <- function(id, expand=NULL){
+    if(expand){
+        expand <- as.integer(expand)
+    }
+#    q <- list(expand=expand)
+    q<- list()
+    res <- ensembl_GET(paste0("lookup/id/", id), query=q)
     ensembl_check(res)
     res
 }
