@@ -20,6 +20,7 @@ genetree_member_symbol <- function(species, symbol, tree_format,  aligned=NULL,
     httr::content(req)
 }
 
+#' @export
 primate_tree <- function(symbol){
     sp_tree <- ape::read.tree(
        text=genetree_member_symbol("homo_sapiens", symbol, "newick", nh_format="species")
@@ -51,7 +52,7 @@ primate_tree <- function(symbol){
 
 }
 
-
+#' @export
 analyse_primate_tree <- function(tr, plot=FALSE){
     human_tips <- which(tr$tip.label == "homo_sapiens")
     if(plot){
