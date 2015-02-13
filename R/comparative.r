@@ -23,18 +23,14 @@ genetree_member_symbol <- function(species, symbol, tree_format,  aligned=NULL,
 #' @export
 primate_tree <- function(symbol){
     sp_tree <- ape::read.tree(
-       text=genetree_member_symbol("homo_sapiens", symbol, "newick", nh_format="species")
+       text=genetree_member_symbol("homo_sapiens", symbol, "newick", nh_format="display_label_composite")
     )
-    blens_tree <- ape::read.tree(
-       text=genetree_member_symbol("homo_sapiens", symbol, "newick")
-    )
-    blens_tree$tip.label <- sp_tree$tip.label
-    primates <- c('papio_anubis', 'homo_sapiens', 'pongo_abelii' , 
-                   'pan_troglodytes', 'chlorocebus_sabaeus', 'gorilla_gorilla',
-                   'macaca_mulatta', 'callithrix_jacchus')
-    to_drop <- blens_tree$tip.label[!(blens_tree$tip.label %in% primates)]
-    ape::drop.tip(blens_tree, to_drop)
-
+    primates <- c('Panu', 'Hsap', 'Pabe' , 'Ptro', 'Csab', 'Ggor', 'Mmul', 'Cjac')
+    toks <- strsplit(sp_tree$tip.label, "_")
+    orth <- sapply(toks, "[[", 1) == symbol
+    right_sp  <- sapply(toks, last) %in% primates
+    to_drop <- sp_tree$tip.label[!(right_sp & orth)]
+    ape::drop.tip(sp_tree, to_drop)
 }
 
 
@@ -54,10 +50,11 @@ primate_tree <- function(symbol){
 
 #' @export
 analyse_primate_tree <- function(tr, plot=FALSE){
-    human_tips <- which(tr$tip.label == "homo_sapiens")
+    spp <- sapply(strsplit(tr$tip.label, "_"), last)
+    human_tips <- which(spp == "Hsap")
     if(plot){
         cols <- ifelse(tr$edge[,2]  %in% human_tips, "red", "grey60")
-        ape::plot.phylo(tr, show.tip.label=F, edge.color=cols)
+        ape::plot.phylo(tr, edge.color=cols)
     }
     tr$edge.length[tr$edge[,2] %in% human_tips ]
 }
