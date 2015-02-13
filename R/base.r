@@ -9,7 +9,15 @@
 ensembl_vars <- new.env()    
 ensembl_vars$next_timeout <- 0
 
+#' @export
+last <- function(x) UseMethod("last")
 
+
+#' @export 
+last.default <- function(x) tail(x,1)
+
+#'@export 
+last.list <- function(x) x[[ length(x) ]]
 
 check_timeout <- function(){
     if(unclass(Sys.time()) < ensembl_vars$next_timeout){
