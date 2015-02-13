@@ -27,7 +27,7 @@ primate_tree <- function(symbol){
     )
     primates <- c('Panu', 'Hsap', 'Pabe' , 'Ptro', 'Csab', 'Ggor', 'Mmul', 'Cjac')
     toks <- strsplit(sp_tree$tip.label, "_")
-    orth <- sapply(toks, "[[", 1) == symbol
+    orth <- grepl(paste0("^",symbol), sapply(toks, "[[", 1))
     right_sp  <- sapply(toks, last) %in% primates
     to_drop <- sp_tree$tip.label[!(right_sp & orth)]
     ape::drop.tip(sp_tree, to_drop)
