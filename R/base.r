@@ -53,8 +53,8 @@ ensembl_check <- function(req){
 }
 
 ensembl_header <- function(format, available=c()){
-    if !format %in% available{
-        stop(paste0("Format '", tree_format, "'not available for this database"))
+    if( !(format %in% available)){
+        stop(paste0("Format '", format, "'not available for this database"))
     }
     h <- switch(format,  "nh"       =  "text/x-nh", 
                          "newick"   =  "text/x-nh", 
@@ -68,7 +68,7 @@ ensembl_header <- function(format, available=c()){
                          "gff"      =  "text/x-gff3",
                          "gff3"     =  "text/x-gff3",
                          "bed"      =  "text/x-bed", 
-        stop(paste0("Format '", tree_format, "'not availble from Ensembl"))
+        stop(paste0("Format '", format, "'not availble from Ensembl")))
     httr::accept(h) 
 }
 

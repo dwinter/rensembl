@@ -10,9 +10,10 @@ gene_tree_header <- function(tree_format){
 }
 
 
-homology_symbol <- function(species, symbol, aligned=TRUE, format, sequence, 
-                            target_speies, target_taxon, type){
-    header = ensembl_header(format, c("json", "orthxml", "xml"))
+homology_symbol <- function(species, symbol, format, aligned=TRUE, sequence, 
+                            target_species, target_taxon, type){
+    end <- paste("homology/symbol", species, symbol, sep="/")
+    header = ensembl_header(format, c("json", "orthoxml", "xml"))
     q <- ensembl_body(match.call(), c("species", "symbol", "format"))
     req <- ensembl_GET(end, header, query=q)
     httr::content(req)
