@@ -63,7 +63,7 @@ ensembl_header <- function(format, available=c()){
                          "xml"      =  "text/x-xml",
                          "seqxml"   =  "text/x-seqxml+xml",
                          "yaml"     =  "text/x-yaml",
-                         "json"     =   "application/json",
+                         "json"     =  "application/json",                       
                          "fasta"    =  "text/x-fasta",
                          "gff"      =  "text/x-gff3",
                          "gff3"     =  "text/x-gff3",
@@ -77,8 +77,17 @@ ensembl_header <- function(format, available=c()){
 ensembl_body <- function(arg_list, exclude){
     arg_list[[1]] <- NULL
     arg_list[exclude] <- NULL
-    lapply(arg_list, eval)
+    lapply(arg_list, arg_to_ensembl)
 }
+
+
+arg_to_ensembl <- function(x){
+    if( is.logical(x) ){
+        return(as.numeric(x))
+    }
+    x
+}
+
 
 lookup_id <- function(id, expand=NULL){
     if(expand){
