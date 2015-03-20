@@ -50,6 +50,41 @@ primate_tree <- function(symbol){
 }
 
 
+
+#' Get dN/dS data for a given gene symbol
+#'@param symbol gene symbol
+#'@return a dataframe contaning dnds, species and taxonomic level 
+#'@export
+dnds <- function(symbol){
+    big_rec <- homology_symbol("hsap", symbol, format="json")
+    homologies <- big_rec$data[[1]]$homologies
+    primates <- Filter(function(x) is_primate(x), homologies)
+    res <- lapply(primates, 
+      function(x) c(dnds = .get_dnds(x), species=x$target$species, group=x$taxonomy_level))
+    df0 <- do.call(rbind.data.frame, res)
+    names(df0) <- c("dnds", "species", "group")
+    df0
+}
+
+.get_dnds <- function(x){
+    if(is.null(x$dn_ds )){
+        return("NA")
+    }
+    x$dn_ds
+}
+
+
+
+
+is_primate <- function(x){
+    if(x$type == "ortholog_one2one"){
+        return (x$taxonomy_level %in% c("Homininae", "Hominidae", "Hominoidea", "Catarrhini", "Simiiformes"))
+    }
+    return(FALSE)
+}
+
+
+
 .parse_xml <- function(){
     xml_tree <- XML::xmlTreeParse(
        genetree_member_symbol("homo_sapiens", symbol, "phyloxml", sequence="none"), 

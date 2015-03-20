@@ -3,6 +3,8 @@
 S3method(last,default)
 S3method(last,list)
 export(analyse_primate_tree)
+export(dnds)
 export(genetree_member_symbol)
 export(last)
+export(map_genomic_coordinates)
 export(primate_tree)
