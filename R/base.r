@@ -52,6 +52,27 @@ ensembl_check <- function(req){
     }
 }
 
+ensembl_header <- function(format, available=c()){
+    if !format %in% available{
+        stop(paste0("Format '", tree_format, "'not available for this database"))
+    }
+    h <- switch(format,  "nh"       =  "text/x-nh", 
+                         "newick"   =  "text/x-nh", 
+                         "pyloxml"  =  "text/x-phyloxml+xml",
+                         "orthoxml" =  "text/x-orthooxml+xml",
+                         "xml"      =  "text/x-xml",
+                         "seqxml"   =  "text/x-seqxml+xml",
+                         "yaml"     =  "text/x-yaml",
+                         "json"     =   "application/json",
+                         "fasta"    =  "text/x-fasta",
+                         "gff"      =  "text/x-gff3",
+                         "gff3"     =  "text/x-gff3",
+                         "bed"      =  "text/x-bed", 
+        stop(paste0("Format '", tree_format, "'not availble from Ensembl"))
+    httr::accept(h) 
+}
+
+
 #Create a query list from long list of possible arguments. 
 ensembl_body <- function(arg_list, exclude){
     arg_list[[1]] <- NULL
