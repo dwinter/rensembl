@@ -1,11 +1,23 @@
 gene_tree_header <- function(tree_format){
     h <- switch(tree_format, "nh"      =  "text/x-nh", 
-                             "newick"   =  "text/x-nh", 
+                             "newick"  =  "text/x-nh", 
                              "pyloxml" =  "text/x-phyloxml+xml",
-                             "json"    =   "application/json", 
+                             "json"    =  "application/json", 
+
+
                  stop(paste("Unkown format for gene tree:", tree_format)))
     httr::accept(h)    
 }
+
+
+homology_symbol <- function(species, symbol, aligned=TRUE, format, sequence, 
+                            target_speies, target_taxon, type){
+    header = ensembl_header(format, c("json", "orthxml", "xml"))
+    q <- ensembl_body(match.call(), c("species", "symbol", "format"))
+    req <- ensembl_GET(end, header, query=q)
+    httr::content(req)
+}
+                          
 
 #' Retreive a gene tree from species and gene symbol
 #' @export
@@ -19,6 +31,9 @@ genetree_member_symbol <- function(species, symbol, tree_format,  aligned=NULL,
     req <- ensembl_GET(end,  header,  query=q)
     httr::content(req)
 }
+
+
+
 
 #' @export
 primate_tree <- function(symbol){
