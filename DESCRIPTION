@@ -8,7 +8,6 @@ Depends:
 Imports:
     httr,
     jsonlite
-VignetteBuilder: knitr                                                                                                                                 
 Roxygen: list(wrap = FALSE)                                                                                                                            
 License: MIT + file LICENSE    
 lazydata: true
