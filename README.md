@@ -6,9 +6,8 @@ Status](https://travis-ci.org/dwinter/rensembl.png?branch=master)](https://travi
 The very early stage of an R package wrapping [the Esembl REST
 api](http://rest.ensembl.org/). 
 
-This package is very much a workin progress, and the behaviour may well change
-in the future. Evenso, there is some stuff to play with already. You can install
-via `devtools`
+This package is very much a work in progress, and the behaviour may well change
+in the future. Eveni so, there is some stuff to play with already. You can install via `devtools`
 
 ```r
 devtools::install_github("dwinter/rensembl")
@@ -16,7 +15,11 @@ devtools::install_github("dwinter/rensembl")
 
 ##examples
 
-There is still a lot to do, but there are some complete functions.
+There is still a lot to do. The plan is to work on low-level functions that
+return simple R objects (xml or json as parsed by `XML` and `jsonlite` and
+character vectors other return-types)  then build higher-level classes and
+functions on top of that. Some of the low-level functions already implemented
+might be helpful:
 
 ### convert within-transcript coordinates to genomic coordinates:
 
