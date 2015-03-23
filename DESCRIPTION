@@ -7,7 +7,9 @@ Depends:
     R (>= 3.1.2)
 Imports:
     httr,
-    jsonlite
+    jsonlite,
+    XML,
+    ape 
 Roxygen: list(wrap = FALSE)                                                                                                                            
 License: MIT + file LICENSE    
 lazydata: true

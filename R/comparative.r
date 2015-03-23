@@ -90,12 +90,12 @@ is_primate <- function(x){
        genetree_member_symbol("homo_sapiens", symbol, "phyloxml", sequence="none"), 
        useInternalNodes=TRUE
     )
-    terminals <- Filter(function(x) xmlName(x) == "clade" & "sequence" %in% names(xmlChildren(x)), 
+    terminals <- Filter(function(x) xmlName(x) == "clade" & "sequence" %in% names(XML::xmlChildren(x)), 
                         xml_tree["//*"])
-    res <- lapply(terminals, function(x) list(orth = grepl(tolower(symbol),  tolower(xmlValue(x["sequence"][[1]][[2]]))),
-                                             spp = sub("\\ ", "_", xmlValue(x["taxonomy"][[1]][[2]]))))
-    names(res) <-  sapply(terminals, function(x) xmlValue(x[[1]]))
-    node_summary <- xmlValue(x["sequence"][[1]][[2]])
+    res <- lapply(terminals, function(x) list(orth = grepl(tolower(symbol),  tolower(XML::xmlValue(x["sequence"][[1]][[2]]))),
+                                             spp = sub("\\ ", "_", XML::xmlValue(x["taxonomy"][[1]][[2]]))))
+    names(res) <-  sapply(terminals, function(x) XML::xmlValue(x[[1]]))
+    node_summary <- XML::xmlValue(x["sequence"][[1]][[2]])
 
 }
 

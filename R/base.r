@@ -42,7 +42,7 @@ ensembl_check <- function(req){
     if(! req$status_code < 400){
         if(req$status_code == 429){
             timeout <- req$headers['retry-after']
-            ensembl$next_timeout <<- timeout + unclass(Sys.time())
+            ensembl_vars$next_timeout <- timeout + unclass(Sys.time())
             #Enforce this? The allowled rate is v. v. high
             msg <- paste("You have been rate-limited, take a break.", 
                          "You won't be able to send requests for", timeout, "seconds")
