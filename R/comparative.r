@@ -1,3 +1,4 @@
+#TODO: remove this and replace with base.r /header 
 gene_tree_header <- function(tree_format){
     h <- switch(tree_format, "nh"      =  "text/x-nh", 
                              "newick"  =  "text/x-nh", 
@@ -63,6 +64,7 @@ dnds <- function(symbol){
       function(x) c(dnds = .get_dnds(x), species=x$target$species, group=x$taxonomy_level))
     df0 <- do.call(rbind.data.frame, res)
     names(df0) <- c("dnds", "species", "group")
+    df0$symbol <- symbol
     df0
 }
 
