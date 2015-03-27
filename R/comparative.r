@@ -9,7 +9,7 @@ gene_tree_header <- function(tree_format){
     httr::accept(h)    
 }
 
-
+#'@export 
 homology_symbol <- function(species, symbol, format, aligned=TRUE, sequence, 
                             target_species, target_taxon, type){
     end <- paste("homology/symbol", species, symbol, sep="/")
