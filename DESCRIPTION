@@ -1,7 +1,11 @@
 Package: rensembl
 Title: Talk to the ensembl REST API  in R
 Version: 0.0.1
-Authors@R: person("David", "Winter", , "david.winter@gmail.com", role = c("aut", "cre"))
+Authors@R: c(
+  person("David", "Winter",  "david.winter@gmail.com", role = c("aut", "cre"),
+  person("Caroline" "Erickson", "caroline.erickson@asu.edu" , role=c("ctb")
+  )
+
 Description: Wraps the ensebmle REST API
 Depends: 
     R (>= 3.1.2)
