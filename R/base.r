@@ -9,14 +9,11 @@
 ensembl_vars <- new.env()    
 ensembl_vars$next_timeout <- 0
 
-#' @export
 last <- function(x) UseMethod("last")
 
 
-#' @export 
 last.default <- function(x) tail(x,1)
 
-#'@export 
 last.list <- function(x) x[[ length(x) ]]
 
 check_timeout <- function(){
@@ -34,6 +31,14 @@ base_url <- function() "http://rest.ensembl.org"
 ensembl_GET  <- function(end_point, ... ){
     check_timeout()
     req  <- httr::GET(base_url(), path=end_point, ...)
+    ensembl_check(req)
+    req
+}
+
+ensembl_POST <- function(end_point, body, ...){
+    stopifnot(is.list(body))
+    body_json <- jsonlite::toJSON(body)
+    req <- httr::POST(base_url(), path=end_point, body=body_json)
     ensembl_check(req)
     req
 }
