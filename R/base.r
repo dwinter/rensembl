@@ -94,27 +94,4 @@ arg_to_ensembl <- function(x){
 }
 
 
-lookup_id <- function(id, expand=NULL){
-    if(expand){
-        expand <- as.integer(expand)
-    }
-#    q <- list(expand=expand)
-    q<- list()
-    res <- ensembl_GET(paste0("lookup/id/", id), query=q)
-    ensembl_check(res)
-    res
-}
-
-
-
-
-
-
-#species <- spp_sets("EPO")
-#primates unlist(species[[4]]$species_set)
-spp_sets  <- function(meth){
-    end <- paste0("info/compara/species_sets/", meth)
-    ensembl_GET(end)
-}
-
 
