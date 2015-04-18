@@ -1,5 +1,6 @@
 #'@export
-effect_from_substitution <- function(symbol, site, from, to){
-    eid <- lookup_symbol(symbol)$id
-    cat(paste0(eid,":", "c.", site, from, ">", to, "\n"))
+vars_from_symbol <- function(symbol, flanking=0, format="gff"){
+    gene <- lookup_symbol(symbol)
+    region <- paste0(gene$seq_region_name, ":", gene$start - flanking, "-", gene$end - flanking)
+    overlap(region=region, feature="variation", format=format)
 }
