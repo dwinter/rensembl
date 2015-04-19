@@ -7,7 +7,7 @@ map_genomic_coordinates <- function(id, type, region, format='json'){
     httr::content(req)
 }
 
-#'
+#'Convert coordinates between genome builds
 #'@export
 map_species_builds <- function(species, region, asm_one, asm_two, 
                                coord_system="chromosome", format='json'){

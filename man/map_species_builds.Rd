@@ -2,12 +2,12 @@
 % Please edit documentation in R/mapping.r
 \name{map_species_builds}
 \alias{map_species_builds}
-\title{}
+\title{Convert coordinates between genome builds}
 \usage{
 map_species_builds(species, region, asm_one, asm_two,
   coord_system = "chromosome", format = "json")
 }
 \description{
-
+Convert coordinates between genome builds
 }
 
