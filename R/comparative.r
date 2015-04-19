@@ -21,6 +21,21 @@ homology_symbol <- function(species, symbol, format, aligned=TRUE, sequence,
 }
                           
 
+#' Retreieve a genomic alignment from a given region
+#'@export
+alignment_region <- function(region, species="homo_sapians", aligned=FALSE,
+                             compact = TRUE, compara = "multi", 
+                             display_species_set = NULL, mask="soft",  
+                             method="EPO", species_set = NULL, 
+                             species_set_group = "mammals", req_format="json"){
+    end <- paste("alignment/region", species, region, sep="/")
+    header = ensembl_header(req_format, c("json", "phyloxml", "xml"))
+    q <- ensembl_body(match.call(), c("species", "region"))
+    req <- ensembl_GET(end, header, query=q)
+    httr::content(req)
+}
+
+
 #' Retreive a gene tree from species and gene symbol
 #' @export
 genetree_member_symbol <- function(species, symbol, tree_format,  aligned=NULL,
