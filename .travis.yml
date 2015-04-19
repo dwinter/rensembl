@@ -8,4 +8,5 @@ notifications:
   email:
     on_success: change
 
-after_failure: 'cat /home/travis/build/dwinter/rensembl/rensembl.Rcheck/00install.out'
+after_failure: 
+    cat /home/travis/build/dwinter/rensembl/rensembl.Rcheck/00install.out
