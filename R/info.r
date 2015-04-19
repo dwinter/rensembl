@@ -8,8 +8,8 @@ lookup_id <- function(id, expand=NULL){
 #'@export
 lookup_symbol <- function(symbol, expand = FALSE, species="homo_sapiens", 
                           format="full", return_format="json"){
-    header = ensembl_header(return_format, c("json", "xml"))
-    q = arg_to_ensembl(list(expand=expand, format=format))
+    header <- ensembl_header(return_format, c("json", "xml"))
+    q <- list(expand=arg_to_ensembl(expand), format=format)
     if(length(symbol) == 1){
         end <- paste("lookup/symbol", species, symbol, sep="/")
         req <- ensembl_GET(end, header=header, query=q)
