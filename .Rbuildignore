@@ -7,3 +7,5 @@
 ^appveyor\.yml$
 
 ^README\.md$
+^README\.Rmd$
+^README-.*\.png$

@@ -6,9 +6,11 @@ output:
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-
-```
-## Error in knitr::opts_chunk$set(collapse = TRUE, comment = "#>", ): argument is missing, with no default
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+)
 ```
 # rensembl
 [![Travis-CI Build
@@ -37,50 +39,22 @@ Though we have only low level functions at present, some of them are quite helpf
 
 ### Get information about a gene by its symbol
 
-
-```r
+```{r}
 brca2_info <- lookup_symbol("BRCA2")
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "lookup_symbol"
-```
-
-```r
 brca2_info
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'brca2_info' not found
 ```
 ### Find variants within a gene
 
-
-```r
+```{r}
 snps <- overlap(gene_id=brca2_info$id, feature="variation")
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "overlap"
-```
-
-```r
 snps[[1]]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'snps' not found
 ```
 
 We can extract some information for each case too:
 
-
-```r
+```{r}
 table(sapply(snps, "[[", "consequence_type"))
-```
 
-```
-## Error in lapply(X = X, FUN = FUN, ...): object 'snps' not found
 ```
 
 
