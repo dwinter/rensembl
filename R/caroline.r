@@ -118,10 +118,4 @@ last.default <- function(x) tail(x,1)
 
 last.list <- function(x) x[[ length(x) ]]
 
-check_timeout <- function(){
-    if(unclass(Sys.time()) < ensembl_vars$next_timeout){
-            time_to_go <- unclass(Sys.time()) - next_timeout
-        stop(paste("Ensembl has prevented you from sending requests for the next",
-                   time_to_go, "seconds. Take a break."))
-    }
-}
+
