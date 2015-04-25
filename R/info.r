@@ -5,7 +5,23 @@ lookup_id <- function(id, expand=NULL){
     ensembl_check(res)
     res
 }
+
+#'Retrieve information about a sequence via gene symbol and species
 #'@export
+#'@param symbol character, gene symbol(s) from which to retreive information.
+#'@param species character, species from which to retreieve information. See
+#'\code{info_species} for a list of avaliable species. Defaults to homo_sapiens
+#'@param symbol logical, if \code{TRUE} return information about transcripts/proteins
+#'associated with these record. Defaults to \code{FALSE}
+#'@param format, character, type of record to return either 'full' or 'condensed'
+#'@param return_format, character method by which record is returned. Defaults
+#'to \code{json}
+#'@references \url{lhttp://rest.ensembl.org/documentation/info/symbol_lookup}
+#'@examples
+#' human_brca <- lookup_symbol("BRCA2")
+#' chimp_brca <- lookup_symbol("BRCA2", species="ptro")
+#' chimp_brca_expanded <- lookup_symbol("BRCA2", species=ptro, expand=TRUE)
+
 lookup_symbol <- function(symbol, expand = FALSE, species="homo_sapiens", 
                           format="full", return_format="json"){
     header <- ensembl_header(return_format, c("json", "xml"))
