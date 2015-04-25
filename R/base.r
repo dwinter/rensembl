@@ -1,20 +1,11 @@
 #Extra functions
 #
-#Save the lat complete request in the the environment as a last, 
-# use to check retry etc.
 
 
 ## Set up the timeout
 
 ensembl_vars <- new.env()    
 ensembl_vars$next_timeout <- 0
-
-last <- function(x) UseMethod("last")
-
-
-last.default <- function(x) tail(x,1)
-
-last.list <- function(x) x[[ length(x) ]]
 
 check_timeout <- function(){
     if(unclass(Sys.time()) < ensembl_vars$next_timeout){
