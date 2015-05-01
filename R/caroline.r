@@ -35,7 +35,7 @@ primate_tree <- function(symbol){
     primates <- c('Panu', 'Hsap', 'Pabe' , 'Ptro', 'Csab', 'Ggor', 'Mmul', 'Cjac')
     toks <- strsplit(sp_tree$tip.label, "_")
     orth <- grepl(paste0("^",symbol), sapply(toks, "[[", 1))
-    right_sp  <- sapply(toks, last) %in% primates
+    right_sp  <- sapply(toks, tail, 1) %in% primates
     to_drop <- sp_tree$tip.label[!(right_sp & orth)]
     ape::drop.tip(sp_tree, to_drop)
 }
@@ -93,7 +93,7 @@ is_primate <- function(x){
 
 #' @export
 analyse_primate_tree <- function(tr, plot=FALSE){
-    spp <- sapply(strsplit(tr$tip.label, "_"), last)
+    spp <- sapply(strsplit(tr$tip.label, "_"), tail, 1)
     human_tips <- which(spp == "Hsap")
     if(plot){
         cols <- ifelse(tr$edge[,2]  %in% human_tips, "red", "grey60")
@@ -109,13 +109,4 @@ analyse_primate_tree <- function(tr, plot=FALSE){
   )
   do.call(rbind.data.frame, res)
 }
-
-
-last <- function(x) UseMethod("last")
-
-
-last.default <- function(x) tail(x,1)
-
-last.list <- function(x) x[[ length(x) ]]
-
 
