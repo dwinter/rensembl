@@ -15,7 +15,7 @@ devtools::install_github("dwinter/rensembl")
 Examples
 --------
 
-Our development plan is to work on low-level functions that return simple R objects (lists or character vectors), then build some higher-level functions hat impliment common tasks or return richer R objects
+Our development plan is to work on low-level functions that return simple R objects (lists or character vectors), then build some higher-level functions hat implement common tasks or return richer R objects
 
 Though we have only low level functions at present, some of them are quite helpful:
 
