@@ -15,7 +15,7 @@ devtools::install_github("dwinter/rensembl")
 Examples
 --------
 
-Our development plan is to work on low-level functions that return simple R objects (lists or character vectors), then build some higher-level functions hat implement common tasks or return richer R objects
+Our development plan is to work on low-level functions that return simple R objects (lists or character vectors), then build some higher-level functions hat impliment common tasks or return richer R objects
 
 Though we have only low level functions at present, some of them are quite helpful:
 
@@ -77,17 +77,17 @@ snps[[1]]
 #> 
 #> $alt_alleles
 #> $alt_alleles[[1]]
-#> [1] "A"
+#> [1] "T"
 #> 
 #> $alt_alleles[[2]]
-#> [1] "C"
+#> [1] "G"
 #> 
 #> 
 #> $assembly_name
 #> [1] "GRCh38"
 #> 
 #> $end
-#> [1] 32315510
+#> [1] 32315494
 #> 
 #> $seq_region_name
 #> [1] "13"
@@ -99,10 +99,10 @@ snps[[1]]
 #> [1] 1
 #> 
 #> $id
-#> [1] "rs370721506"
+#> [1] "rs546292946"
 #> 
 #> $start
-#> [1] 32315510
+#> [1] 32315494
 ```
 
 We can extract some information for each case too:
@@ -111,19 +111,19 @@ We can extract some information for each case too:
 table(sapply(snps, "[[", "consequence_type"))
 #> 
 #>                3_prime_UTR_variant                5_prime_UTR_variant 
-#>                                 39                                 15 
+#>                                 66                                 20 
 #>            coding_sequence_variant                 frameshift_variant 
-#>                                861                               1039 
+#>                                932                               1041 
 #>                   inframe_deletion                  inframe_insertion 
-#>                                 37                                  3 
-#>            initiator_codon_variant                     intron_variant 
-#>                                  3                               1529 
-#>                   missense_variant non_coding_transcript_exon_variant 
-#>                               1298                                 34 
+#>                                 38                                  3 
+#>                     intron_variant                   missense_variant 
+#>                               2721                               1369 
+#> non_coding_transcript_exon_variant           protein_altering_variant 
+#>                                 65                                  1 
 #>            splice_acceptor_variant               splice_donor_variant 
-#>                                 55                                 62 
-#>              splice_region_variant                        stop_gained 
-#>                                107                                337 
-#>                 synonymous_variant 
-#>                                168
+#>                                 60                                 66 
+#>              splice_region_variant                         start_lost 
+#>                                118                                  3 
+#>                        stop_gained                 synonymous_variant 
+#>                                346                                189
 ```
