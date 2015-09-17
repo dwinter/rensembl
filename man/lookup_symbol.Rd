@@ -27,7 +27,7 @@ Retrieve information about a sequence via gene symbol and species
 \examples{
 human_brca <- lookup_symbol("BRCA2")
 chimp_brca <- lookup_symbol("BRCA2", species="ptro")
-chimp_brca_expanded <- lookup_symbol("BRCA2", species=ptro, expand=TRUE)
+chimp_brca_expanded <- lookup_symbol("BRCA2", species="ptro", expand=TRUE)
 }
 \references{
 \url{lhttp://rest.ensembl.org/documentation/info/symbol_lookup}
