@@ -20,7 +20,7 @@ lookup_id <- function(id, expand=NULL){
 #'@examples
 #' human_brca <- lookup_symbol("BRCA2")
 #' chimp_brca <- lookup_symbol("BRCA2", species="ptro")
-#' chimp_brca_expanded <- lookup_symbol("BRCA2", species=ptro, expand=TRUE)
+#' chimp_brca_expanded <- lookup_symbol("BRCA2", species="ptro", expand=TRUE)
 
 lookup_symbol <- function(symbol, expand = FALSE, species="homo_sapiens", 
                           format="full", return_format="json"){
