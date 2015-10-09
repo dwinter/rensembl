@@ -21,9 +21,11 @@ homology_symbol <- function(species, symbol, format, aligned=TRUE, sequence,
 }
                           
 
-#' Retreieve a genomic alignment from a given region
+#' Retrieve a genomic alignment from a given region
+#'@param region given as chr:start-end
+#'@return tree and information about sequence of the region for each species
 #'@export
-alignment_region <- function(region, species="homo_sapians", aligned=FALSE,
+alignment_region <- function(region, species="homo_sapiens", aligned=FALSE,
                              compact = TRUE, compara = "multi", 
                              display_species_set = NULL, mask="soft",  
                              method="EPO", species_set = NULL, 
@@ -36,7 +38,7 @@ alignment_region <- function(region, species="homo_sapians", aligned=FALSE,
 }
 
 
-#' Retreive a gene tree from species and gene symbol
+#' Retrieve a gene tree from species and gene symbol
 #' @export
 genetree_member_symbol <- function(species, symbol, tree_format,  aligned=NULL,
                                    external_db=NULL, nh_format=NULL, object_type=NULL,

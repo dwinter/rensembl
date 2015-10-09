@@ -27,6 +27,8 @@ pi_around_gene <- function(symbol, flanking, window_size){
     
 }
 
+#' Get the primate tree for a gene
+#' @param symbol gene symbol
 #' @export
 primate_tree <- function(symbol){
     sp_tree <- ape::read.tree(
@@ -42,10 +44,17 @@ primate_tree <- function(symbol){
 
 
 
-#' Get dN/dS data for a given gene symbol
-#'@param symbol gene symbol
-#'@return a dataframe contaning dnds, species and taxonomic level 
+#' Get dN/dS data for primates for # variable gender with 20 "male" entries and 
+# 30 "female" entries 
+gender <- c(rep("male",20), rep("female", 30)) 
+gender <- factor(gender) 
+# stores gender as 20 1s and 30 2s and associates
+# 1=female, 2=male internally (alphabetically)
+# R now treats gender as a nominal variable 
+summary(gender)a given gene symbol
 #'@export
+#'@param symbol gene symbol
+#'@return a dataframe contaning dnds, species and taxonomic group 
 dnds <- function(symbol){
     big_rec <- homology_symbol("hsap", symbol, format="json")
     homologies <- big_rec$data[[1]]$homologies
@@ -65,17 +74,15 @@ dnds <- function(symbol){
     x$dn_ds
 }
 
-
-
-
+#' Checks if a homologous region (including lots of info) is for a primate
+#'@export
+#' @param x a homologous region
 is_primate <- function(x){
     if(x$type == "ortholog_one2one"){
         return (x$taxonomy_level %in% c("Homininae", "Hominidae", "Hominoidea", "Catarrhini", "Simiiformes"))
     }
     return(FALSE)
 }
-
-
 
 .parse_xml <- function(){
     xml_tree <- XML::xmlTreeParse(
