@@ -1,4 +1,4 @@
-#'Convert  coordinates between gene and genome
+#'Convert coordinates between gene and genome
 #'@export
 map_genomic_coordinates <- function(id, type, region, format='json'){
     header = ensembl_header(format, c("json"))

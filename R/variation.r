@@ -8,11 +8,13 @@ variation_id <- function(ids, species= "hsap", genotypes=FALSE, phenotypes=FALSE
     httr::content(req)
 }
 
+#'@export
 vars_post <- function(ids, species= "hsap", query, header){
     end <- paste("variation", species, sep="/")
     ensembl_POST(end, body=list(ids=ids), query=query, header)
 }
 
+#'@export
 vars_get <- function(ids, species= "hsap", header, query){
     end <- paste("variation", species, ids, sep="/")
     ensembl_GET(end, query=query, header)
