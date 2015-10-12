@@ -1,9 +1,9 @@
 #'@export
 # vep_id('COSM467')
 # vep_id(c("rs116035550", "COSM476"))
-vep_id <- function(id, species="human", format="json"){
+vep_id <- function(id, species="hsap", format="json"){
     if (length(id) == 1){
-        return(vep_one(paste(id, species, sep="/"), format))
+        return(vep_one(paste(species, "id", id, sep="/"), format))
     }
     vep_many(id, "id", species, format)
 }
@@ -28,7 +28,6 @@ vep_region <- function(region, species="human", format="json"){
 
 vep_one <- function(path, format="json"){
     end_point <- paste("vep", path, sep="/")
-    cat(end_point)
     header <- ensembl_header(format, c("json", "xml"))
     req <- ensembl_GET(end_point, header)
     httr::content(req)
