@@ -4,6 +4,7 @@ Version: 0.0.1
 Authors@R: c(
   person("David",    "Winter",   email="david.winter@gmail.com",    role = c("aut", "cre") ),
   person("Caroline", "Erickson", email="caroline.erickson@asu.edu", role = "ctb")
+  person("Rachel", "Schwartz". email="rsschwa1@asu.edu", role = "ctb")
   )
 Description: Wraps the ensebmle REST API
 Depends: 
