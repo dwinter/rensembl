@@ -5,8 +5,8 @@
 #'  (default = hsap = humans)
 #'@param format format for fetched recrod (default = json)
 #'@examples
-# vep_id('COSM467')
-# vep_id(c("rs116035550", "COSM476"))
+#' vep_id('COSM467')
+#' vep_id(c("rs116035550", "COSM476"))
 vep_id <- function(id, species="hsap", format="json"){
     if (length(id) == 1){
         return(vep_one(paste(species, "id", id, sep="/"), format))
@@ -17,7 +17,7 @@ vep_id <- function(id, species="hsap", format="json"){
 #' Fetch variant consequences fro a given allele at a given site 
 #'@export
 #'@examples
-#' vep_allele(species="hsap", region=9:22125503-22125502:1, allele="C")
+#'vep_allele(species="hsap", region="9:22125503-22125502:1", allele="C")
 vep_allele <- function(species="hsap", region, allele, format="json"){
     vep_one(paste(species, "region", region,allele, sep="/"), format)
 }
@@ -41,7 +41,7 @@ vep_one <- function(path, format="json"){
     httr::content(req)
 }
 
-#'vep_many(c("rs116035550", "COSM476"))
+#vep_many(c("rs116035550", "COSM476"))
 vep_many <- function(identifier, id_type , species="human", format="json"){
     body <- if(id_type=="id") list(ids=identifier) else list(variants = identifier)
     end <- paste("vep", species, id_type, sep="/")
