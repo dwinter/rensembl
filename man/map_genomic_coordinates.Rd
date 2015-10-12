@@ -2,11 +2,11 @@
 % Please edit documentation in R/mapping.r
 \name{map_genomic_coordinates}
 \alias{map_genomic_coordinates}
-\title{Convert  coordinates between gene and genome}
+\title{Convert coordinates between gene and genome}
 \usage{
 map_genomic_coordinates(id, type, region, format = "json")
 }
 \description{
-Convert  coordinates between gene and genome
+Convert coordinates between gene and genome
 }
 

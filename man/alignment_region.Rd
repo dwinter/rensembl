@@ -2,14 +2,20 @@
 % Please edit documentation in R/comparative.r
 \name{alignment_region}
 \alias{alignment_region}
-\title{Retreieve a genomic alignment from a given region}
+\title{Retrieve a genomic alignment from a given region}
 \usage{
-alignment_region(region, species = "homo_sapians", aligned = FALSE,
+alignment_region(region, species = "homo_sapiens", aligned = FALSE,
   compact = TRUE, compara = "multi", display_species_set = NULL,
   mask = "soft", method = "EPO", species_set = NULL,
   species_set_group = "mammals", req_format = "json")
 }
+\arguments{
+\item{region}{given as chr:start-end}
+}
+\value{
+tree and information about sequence of the region for each species
+}
 \description{
-Retreieve a genomic alignment from a given region
+Retrieve a genomic alignment from a given region
 }
 

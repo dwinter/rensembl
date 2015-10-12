@@ -22,10 +22,11 @@ vep_allele <- function(species="hsap", region, allele, format="json"){
     vep_one(paste(species, "region", region,allele, sep="/"), format)
 }
 
+# TODO HGVS 
+# vep_region('AGT:c.803T>C')
 #' Fetch variant consequences from regions 
 #'@export
 #'@examples
-#'vep_region('AGT:c.803T>C')
 #'vep_region(c("21 26960070 rs116645811 G A", "21 26965148 - G A"))
 vep_region <- function(region, species="human", format="json"){
     if (length(region) == 1){
