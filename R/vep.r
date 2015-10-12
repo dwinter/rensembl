@@ -34,7 +34,6 @@ vep_region <- function(region, species="human", format="json"){
     vep_many(region, "region", species, format)
 }
 
-#'@export
 vep_one <- function(path, format="json"){
     end_point <- paste("vep", path, sep="/")
     header <- ensembl_header(format, c("json", "xml"))
@@ -42,8 +41,6 @@ vep_one <- function(path, format="json"){
     httr::content(req)
 }
 
-#'@export
-#'@examples
 #'vep_many(c("rs116035550", "COSM476"))
 vep_many <- function(identifier, id_type , species="human", format="json"){
     body <- if(id_type=="id") list(ids=identifier) else list(variants = identifier)
