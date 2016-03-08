@@ -1,9 +1,16 @@
 #'@export
-lookup_id <- function(id, expand=NULL){
-    q <- arg_to_ensembl(list(expand=expand))
-    res <- ensembl_GET(paste0("lookup/id/", id), query=q)
-    ensembl_check(res)
-    res
+lookup_id <- function(id, db_type="core", expand=NULL, format="full", 
+                      object_type=NULL,species=NULL, return_format="json"){
+    header <- ensembl_header(return_format, c("json"))
+    q <- ensembl_body(match.call(), "id")
+    if(length(id) == 1){
+        res <- ensembl_GET(paste0("lookup/id/", id), header=header, query=q)
+        ensembl_check(res)
+    } else {
+        res <- ensembl_POST("lookup/id/", query=q, header=header, body=list(ids=id))
+        ensembl_check(res)
+    }
+    httr::content(res) #TODO custom parser for all returns ?httr::content
 }
 
 #'Retrieve information about a sequence via gene symbol and species
