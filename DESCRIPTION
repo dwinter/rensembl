@@ -8,13 +8,14 @@ Authors@R: c(
   person("Rachel", "Schwartz", email="rsschwa1@asu.edu", role = "ctb")
   )
 Description: Wraps the ensebmle REST API
-Depends: 
+Depends:
     R (>= 3.1.2)
 Imports:
     httr,
     jsonlite,
     XML,
-    ape 
-Roxygen: list(wrap = FALSE)                                                                                                                            
-License: MIT + file LICENSE    
+    ape
+Roxygen: list(wrap = FALSE)
+License: MIT + file LICENSE
 lazydata: true
+RoxygenNote: 5.0.1
