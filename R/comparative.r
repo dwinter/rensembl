@@ -23,11 +23,11 @@ homology_symbol <- function(species, symbol, format, aligned=TRUE, sequence,
 
 
 #'@export
-homology_id <- function(id, symbol, format, aligned=TRUE, sequence, 
-                            target_species, target_taxon, type){
+homology_id <- function(id, rec_format="json", aligned=TRUE, sequence, cigar_line, 
+                        compara, format, target_species, target_taxon, type){
     end <- paste("homology/id", id,  sep="/")
-    header = ensembl_header(format, c("json", "orthoxml", "xml"))
-    q <- ensembl_body(match.call(), c("species", "symbol", "format"))
+    header = ensembl_header(rec_format, c("json", "orthoxml", "xml"))
+    q <- ensembl_body(match.call(), c("id", "rec_format"))
     req <- ensembl_GET(end, header, query=q)
     httr::content(req)
 }
@@ -41,9 +41,9 @@ alignment_region <- function(region, species="homo_sapiens", aligned=FALSE,
                              compact = TRUE, compara = "multi", 
                              display_species_set = NULL, mask="soft",  
                              method="EPO", species_set = NULL, 
-                             species_set_group = "mammals", req_format="json"){
+                             species_set_group = "mammals", rec_format="json"){
     end <- paste("alignment/region", species, region, sep="/")
-    header = ensembl_header(req_format, c("json", "phyloxml", "xml"))
+    header = ensembl_header(rec_format, c("json", "phyloxml", "xml"))    
     q <- ensembl_body(match.call(), c("species", "region"))
     req <- ensembl_GET(end, header, query=q)
     httr::content(req)
